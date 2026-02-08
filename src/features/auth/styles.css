@@ -1,0 +1,177 @@
+.login-overlay {
+    position: fixed;
+    top: 32px;
+    /* Below title bar */
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 32px);
+    background-color: #0b0b0b;
+    /* Very dark background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-family: 'Manrope', sans-serif;
+    /* Assuming Inter or similar sans-serif */
+}
+
+.login-overlay.hidden {
+    display: none;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.login-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.login-subtitle {
+    font-size: 14px;
+    color: #a1a1aa;
+    /* Light gray text */
+    margin-bottom: 32px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #1e2023;
+    /* Dark input background */
+    border: 1px solid #2d2f33;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    border-color: #3b82f6;
+    /* Blue focus border */
+}
+
+.password-group {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #a1a1aa;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-top: -8px;
+    margin-bottom: 8px;
+}
+
+.forgot-password a {
+    color: #a1a1aa;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.LoginButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #1e2532;
+    /* Initial dark blue-ish button background */
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.LoginButton:hover {
+    background-color: #2c3545;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 16px 0;
+    color: #52525b;
+    font-size: 12px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #27272a;
+}
+
+.divider span {
+    padding: 0 10px;
+}
+
+.google-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #3b82f6;
+    /* Bright blue for Google button as shown in image roughly */
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.2s;
+}
+
+.google-btn:hover {
+    background-color: #2563eb;
+}
+
+.signup-link {
+    margin-top: 24px;
+    font-size: 14px;
+    color: #a1a1aa;
+}
+
+.signup-link a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 4px;
+    border-bottom: 1px solid #ffffff;
+}

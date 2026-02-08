@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Manrope', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ESTILOS PARA A BARRA DE TÍTULO CUSTOMIZADA */
+.title-bar {
+    height: 40px;
+    background-color: #202124;
+    /* Matches sidebar background for seamless dark look, or slightly lighter */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    border-bottom: 1px solid #2a3942;
+    -webkit-app-region: drag;
+    /* Permite arrastar a janela por esta barra */
+}
+
+/* LEFT SIDE ACTIONS */
+.left-actions {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    height: 100%;
+    -webkit-app-region: no-drag;
+}
+
+.header-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: #aebac1;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 0 16px;
+    cursor: pointer;
+    border-radius: 0;
+    height: 100%;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.header-btn:hover {
+    background-color: #202c33;
+    color: #e9edef;
+}
+
+.header-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.header-btn.icon-only {
+    padding: 0;
+    width: 40px;
+    justify-content: center;
+    font-size: 20px;
+    /* For the + symbol if text, but we use SVG */
+}
+
+/* Welcome button (instance name tab) with black background */
+#welcome-btn {
+    background-color: #000000;
+    color: #e9edef;
+}
+
+#welcome-btn:hover {
+    background-color: #1a1a1a;
+}
+
+
+.title-bar .controls {
+    display: flex;
+    align-items: center;
+}
+
+.title-bar .controls button {
+    -webkit-app-region: no-drag;
+    /* Garante que os botões sejam clicáveis */
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    /* Match title bar height for full height hover */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aebac1;
+}
+
+.title-bar .controls button:hover {
+    background-color: #202c33;
+    color: #e9edef;
+}
+
+#close-btn:hover {
+    background-color: #e81123;
+    color: white;
+}
+
+/* CONTÊINER PRINCIPAL ABAIXO DA BARRA DE TÍTULO */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 40px - 36px);
+}
+
+/* SIDEBAR E CONTEÚDO */
+.sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: #111b21;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-right: 1px solid #2a3942;
+}
+
+.instances-list {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.instance-button {
+    width: 100%;
+    font-size: 14px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border: 2px solid transparent;
+    background-color: #202c33;
+    color: #e9edef;
+    cursor: pointer;
+    border-radius: 10px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background-color 0.2s, border-color 0.3s;
+    position: relative;
+}
+
+.instance-button:hover {
+    background-color: #2a3942;
+}
+
+.instance-button.active {
+    background-color: #2a3942;
+    border-color: #ff4081;
+}
+
+/* WhatsApp icon in instance button */
+.instance-whatsapp-icon {
+    flex-shrink: 0;
+    margin-right: 4px;
+}
+
+
+/* ANIMAÇÃO DE NOTIFICAÇÃO (BRILHO NA BORDA) */
+@keyframes glow {
+    0% {
+        border-color: #25d366;
+    }
+
+    50% {
+        border-color: #128c7e;
+    }
+
+    100% {
+        border-color: #25d366;
+    }
+}
+
+.instance-button.unread {
+    animation: glow 1.5s infinite;
+}
+
+.profile-name {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #e9edef;
+}
+
+/* CAMPO DE EDIÇÃO INLINE */
+.profile-name-input {
+    flex-grow: 1;
+    background-color: #374248;
+    border: 1px solid #00a884;
+    color: #e9edef;
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 2px 5px;
+    outline: none;
+}
+
+/* BOTÃO DE MENU (3 PONTINHOS) */
+.instance-menu-btn {
+    background: transparent;
+    border: none;
+    color: #aeafb1;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 50%;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.instance-button:hover .instance-menu-btn {
+    opacity: 1;
+}
+
+.instance-menu-btn:hover {
+    background-color: #374248;
+}
+
+#add-instance-btn {
+    width: 100%;
+    font-size: 16px;
+    padding: 15px;
+    border: none;
+    background-color: #7B7272;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+#add-instance-btn:hover {
+    background-color: #635c5c;
+}
+
+.webview-container {
+    flex-grow: 1;
+    height: 100%;
+}
+
+.webview-content {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.webview-content.active {
+    display: flex;
+}
+
+/* SECONDARY HEADER */
+.secondary-header {
+    height: 36px;
+    background-color: #000000;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #1A1B1C;
+    position: relative;
+    z-index: 100;
+}
+
+.account-menu-container {
+    position: relative;
+}
+
+.account-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: #e9edef;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.account-btn:hover,
+.account-btn.active {
+    background-color: #202c33;
+}
+
+.account-dropdown {
+    position: absolute;
+    top: 110%;
+    /* Just below the button */
+    right: 0;
+    width: 250px;
+    background-color: #1A1B1C;
+    border: 1px solid #2d2f33;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 101;
+}
+
+.account-dropdown.hidden {
+    display: none;
+}
+
+.dropdown-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #2d2f33;
+    margin-bottom: 4px;
+}
+
+.user-email {
+    color: #aebac1;
+    font-size: 13px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropdown-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    color: #e9edef;
+    text-align: left;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #2a3942;
+}
+
+.dropdown-footer {
+    border-top: 1px solid #2d2f33;
+    margin-top: 4px;
+    padding-top: 4px;
+}
+
+.delete-account-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    color: #ef5350;
+    /* Red color */
+    text-align: left;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+.delete-account-btn:hover {
+    background-color: rgba(239, 83, 80, 0.1);
+}
