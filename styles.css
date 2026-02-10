@@ -4,6 +4,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Manrope', sans-serif;
 }
 
 body,
@@ -11,220 +12,321 @@ html {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    font-family: 'Manrope', sans-serif;
+    background-color: #f0f2f5;
+    font-size: 13px;
+    /* Reduced base font size */
+}
+
+/* --- App Layout --- */
+.app-layout {
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    width: 100vw;
 }
 
-/* ESTILOS PARA A BARRA DE TÍTULO CUSTOMIZADA */
-.title-bar {
-    height: 40px;
+/* --- Global Header --- */
+.global-header {
+    height: 42px;
+    /* Reduced from 60px */
     background-color: #202124;
-    /* Matches sidebar background for seamless dark look, or slightly lighter */
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0;
-    border-bottom: 1px solid #2a3942;
+    justify-content: space-between;
+    padding: 0 10px;
+    /* Reduced padding */
     -webkit-app-region: drag;
-    /* Permite arrastar a janela por esta barra */
+    border-bottom: 1px solid #2f3136;
+    flex-shrink: 0;
 }
 
-/* LEFT SIDE ACTIONS */
-.left-actions {
+.brand {
     display: flex;
     align-items: center;
-    gap: 0;
-    height: 100%;
     -webkit-app-region: no-drag;
 }
 
-.header-btn {
+.brand h1 {
+    font-size: 15px;
+    /* Reduced from 20px */
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.3px;
+}
+
+.brand h1 span {
+    color: #a855f7;
+}
+
+.header-actions {
     display: flex;
     align-items: center;
     gap: 8px;
+    /* Reduced gap */
+    -webkit-app-region: no-drag;
+}
+
+/* Icon Buttons */
+.icon-btn {
     background: transparent;
     border: none;
-    color: #aebac1;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 0 16px;
+    color: #9ca3af;
     cursor: pointer;
-    border-radius: 0;
-    height: 100%;
-    transition: background-color 0.2s, color 0.2s;
+    padding: 6px;
+    /* Reduced padding */
+    border-radius: 6px;
+    /* Slightly squarer radius */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
 }
 
-.header-btn:hover {
-    background-color: #202c33;
-    color: #e9edef;
+.icon-btn:hover {
+    background-color: #2f3136;
+    color: #e5e7eb;
 }
 
-.header-btn svg {
+.icon-btn svg {
     width: 16px;
+    /* Explicit smaller icon size */
     height: 16px;
 }
 
-.header-btn.icon-only {
-    padding: 0;
-    width: 40px;
-    justify-content: center;
-    font-size: 20px;
-    /* For the + symbol if text, but we use SVG */
+/* Avatar Button */
+.account-container {
+    position: relative;
+    margin: 0 6px;
 }
 
-/* Welcome button (instance name tab) with black background */
-#welcome-btn {
-    background-color: #000000;
-    color: #e9edef;
-}
-
-#welcome-btn:hover {
-    background-color: #1a1a1a;
-}
-
-
-.title-bar .controls {
-    display: flex;
-    align-items: center;
-}
-
-.title-bar .controls button {
-    -webkit-app-region: no-drag;
-    /* Garante que os botões sejam clicáveis */
-    border: none;
+.avatar-btn {
     background: transparent;
+    border: none;
+    padding: 0;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
-    /* Match title bar height for full height hover */
+    border-radius: 50%;
+    width: 26px;
+    /* Reduced from 36px */
+    height: 26px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.avatar-btn:hover,
+.avatar-btn.active {
+    border-color: #a855f7;
+}
+
+.avatar-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Window Controls */
+.controls {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+    /* Reduced margin */
+    padding-left: 8px;
+    border-left: 1px solid #373a40;
+    gap: 2px;
+}
+
+.controls button {
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    width: 28px;
+    /* Reduced from 32px */
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #aebac1;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    -webkit-app-region: no-drag;
 }
 
-.title-bar .controls button:hover {
-    background-color: #202c33;
-    color: #e9edef;
+.controls button svg {
+    width: 14px;
+    height: 14px;
+}
+
+.controls button:hover {
+    background-color: #2f3136;
+    color: #fff;
 }
 
 #close-btn:hover {
-    background-color: #e81123;
-    color: white;
+    background-color: #ef4444;
+    color: #fff;
 }
 
-/* CONTÊINER PRINCIPAL ABAIXO DA BARRA DE TÍTULO */
-.main-content {
-    flex-grow: 1;
+/* --- Main Body --- */
+.main-body {
     display: flex;
-    flex-direction: row;
-    height: calc(100vh - 40px - 36px);
+    flex-grow: 1;
+    overflow: hidden;
 }
 
-/* SIDEBAR E CONTEÚDO */
+/* --- Sidebar --- */
 .sidebar {
-    width: 250px;
-    height: 100%;
-    background-color: #111b21;
+    width: 260px;
+    /* Increased from 220px */
+    background-color: #202124;
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    border-right: 1px solid #2a3942;
+    border-right: 1px solid #2f3136;
+    padding: 12px;
+    /* Increased padding from 8px */
+    flex-shrink: 0;
 }
 
 .instances-list {
     flex-grow: 1;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    /* Increased gap */
+    padding-bottom: 10px;
 }
 
+/* Scrollbar styling for sidebar */
+.instances-list::-webkit-scrollbar {
+    width: 4px;
+    /* Thinner scrollbar */
+}
+
+.instances-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.instances-list::-webkit-scrollbar-thumb {
+    background-color: #373a40;
+    border-radius: 2px;
+}
+
+/* Instance Card/Button */
 .instance-button {
     width: 100%;
-    font-size: 14px;
-    padding: 12px;
-    margin-bottom: 8px;
-    border: 2px solid transparent;
-    background-color: #202c33;
-    color: #e9edef;
-    cursor: pointer;
-    border-radius: 10px;
-    text-align: left;
+    background-color: #2b2d31;
+    /* Cleaner look when inactive */
+    color: #9ca3af;
+    /* Dimmer text when inactive */
+    border: 1px solid transparent;
+    border-radius: 14px;
+    /* Larger radius */
+    padding: 10px 14px;
+    /* Reduced vertical padding slightly */
     display: flex;
     align-items: center;
     gap: 12px;
-    transition: background-color 0.2s, border-color 0.3s;
-    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    outline: none;
+    font-size: 13px;
+    min-height: 50px;
+    /* Adjusted min-height */
 }
 
 .instance-button:hover {
-    background-color: #2a3942;
+    background-color: #35373c;
+    color: #e5e7eb;
 }
 
 .instance-button.active {
-    background-color: #2a3942;
-    border-color: #ff4081;
+    background-color: #35373c;
+    color: #e5e7eb;
+    border: 1px solid #a855f7;
+    /* Full border */
+    border-radius: 14px;
+    /* Consistent radius */
 }
 
-/* WhatsApp icon in instance button */
-.instance-whatsapp-icon {
+/* Avatar Placeholder */
+.avatar-placeholder {
+    width: 24px;
+    height: 24px;
+    background-color: #4b4e54;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     flex-shrink: 0;
-    margin-right: 4px;
 }
 
-
-/* ANIMAÇÃO DE NOTIFICAÇÃO (BRILHO NA BORDA) */
-@keyframes glow {
-    0% {
-        border-color: #25d366;
-    }
-
-    50% {
-        border-color: #128c7e;
-    }
-
-    100% {
-        border-color: #25d366;
-    }
+.avatar-text {
+    font-size: 10px;
+    font-weight: 700;
+    color: #ffffff;
 }
 
-.instance-button.unread {
-    animation: glow 1.5s infinite;
+.notification-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    border: 1px solid #2b2d31;
+    /* Matches button bg */
+}
+
+.instance-whatsapp-icon {
+    margin-left: auto;
+    /* Push to right */
+    width: 16px !important;
+    height: 16px !important;
+    flex-shrink: 0;
+    color: #25D366;
 }
 
 .profile-name {
+    font-weight: 500;
+    font-size: 13px;
     flex-grow: 1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #e9edef;
 }
 
-/* CAMPO DE EDIÇÃO INLINE */
 .profile-name-input {
     flex-grow: 1;
-    background-color: #374248;
-    border: 1px solid #00a884;
-    color: #e9edef;
-    font-size: 14px;
+    background: #18191c;
+    border: 1px solid #a855f7;
+    color: #fff;
+    padding: 2px 6px;
     border-radius: 4px;
-    padding: 2px 5px;
+    font-size: 13px;
     outline: none;
+    height: 24px;
 }
 
-/* BOTÃO DE MENU (3 PONTINHOS) */
+/* Menu Button on Instance */
 .instance-menu-btn {
+    opacity: 0;
     background: transparent;
     border: none;
-    color: #aeafb1;
+    color: #9ca3af;
     cursor: pointer;
     padding: 2px;
-    border-radius: 50%;
-    margin-left: auto;
+    border-radius: 4px;
+    transition: all 0.2s;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
+    /* Ensure centering */
+}
+
+.instance-menu-btn svg {
+    width: 14px;
+    height: 14px;
 }
 
 .instance-button:hover .instance-menu-btn {
@@ -232,91 +334,80 @@ html {
 }
 
 .instance-menu-btn:hover {
-    background-color: #374248;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Sidebar Footer & Add Button */
+.sidebar-footer {
+    padding-top: 8px;
+    margin-top: auto;
 }
 
 #add-instance-btn {
     width: 100%;
-    font-size: 16px;
-    padding: 15px;
-    border: none;
-    background-color: #7B7272;
-    color: #ffffff;
+    background-color: #2f3136;
+    color: #9ca3af;
+    border: 1px solid #373a40;
+    border-radius: 8px;
+    padding: 10px;
+    /* Compact padding */
+    font-size: 12px;
+    font-weight: 600;
     cursor: pointer;
-    border-radius: 6px;
-    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s;
 }
 
 #add-instance-btn:hover {
-    background-color: #635c5c;
+    background-color: #373a40;
+    color: #fff;
+    border-color: #4e535b;
 }
 
+#add-instance-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* --- Webview Area --- */
 .webview-container {
     flex-grow: 1;
-    height: 100%;
+    background-color: #ffffff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .webview-content {
+    flex-grow: 1;
     width: 100%;
     height: 100%;
     display: none;
+    border: none;
 }
 
 .webview-content.active {
     display: flex;
 }
 
-/* SECONDARY HEADER */
-.secondary-header {
-    height: 36px;
-    background-color: #000000;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0 10px;
-    font-size: 13px;
-    border-bottom: 1px solid #1A1B1C;
-    position: relative;
-    z-index: 100;
-}
-
-.account-menu-container {
-    position: relative;
-}
-
-.account-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    border: none;
-    color: #e9edef;
-    cursor: pointer;
-    font-size: 13px;
-    padding: 4px 8px;
-    border-radius: 4px;
-    transition: background-color 0.2s;
-}
-
-.account-btn:hover,
-.account-btn.active {
-    background-color: #202c33;
-}
-
+/* --- Account Dropdown --- */
 .account-dropdown {
     position: absolute;
-    top: 110%;
-    /* Just below the button */
-    right: 0;
-    width: 250px;
-    background-color: #1A1B1C;
-    border: 1px solid #2d2f33;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    padding: 8px 0;
-    display: flex;
-    flex-direction: column;
-    z-index: 101;
+    top: 40px;
+    /* Closer to header */
+    right: 4px;
+    width: 200px;
+    /* Smaller width */
+    background-color: #2b2d31;
+    border: 1px solid #1e1f22;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    padding: 4px 0;
 }
 
 .account-dropdown.hidden {
@@ -324,14 +415,14 @@ html {
 }
 
 .dropdown-header {
-    padding: 12px 16px;
-    border-bottom: 1px solid #2d2f33;
-    margin-bottom: 4px;
+    padding: 8px 12px;
+    border-bottom: 1px solid #3f4147;
+    margin-bottom: 2px;
 }
 
 .user-email {
-    color: #aebac1;
-    font-size: 13px;
+    font-size: 11px;
+    color: #949ba4;
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -340,45 +431,55 @@ html {
 
 .dropdown-item {
     width: 100%;
+    padding: 8px 12px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 16px;
+    gap: 8px;
     background: transparent;
     border: none;
-    color: #e9edef;
-    text-align: left;
+    color: #b5bac1;
+    font-size: 12px;
     cursor: pointer;
-    font-size: 13px;
+    text-align: left;
     transition: background-color 0.2s;
 }
 
+.dropdown-item svg {
+    width: 12px;
+    height: 12px;
+}
+
 .dropdown-item:hover {
-    background-color: #2a3942;
+    background-color: #35373c;
+    color: #fff;
 }
 
 .dropdown-footer {
-    border-top: 1px solid #2d2f33;
-    margin-top: 4px;
-    padding-top: 4px;
+    margin-top: 2px;
+    padding-top: 2px;
+    border-top: 1px solid #3f4147;
 }
 
 .delete-account-btn {
     width: 100%;
+    padding: 8px 12px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 16px;
+    gap: 8px;
     background: transparent;
     border: none;
-    color: #ef5350;
-    /* Red color */
-    text-align: left;
+    color: #f23f42;
+    font-size: 12px;
     cursor: pointer;
-    font-size: 13px;
+    text-align: left;
     transition: background-color 0.2s;
 }
 
+.delete-account-btn svg {
+    width: 12px;
+    height: 12px;
+}
+
 .delete-account-btn:hover {
-    background-color: rgba(239, 83, 80, 0.1);
+    background-color: rgba(242, 63, 66, 0.1);
 }
