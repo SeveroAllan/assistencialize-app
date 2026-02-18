@@ -82,13 +82,22 @@ const dialogForm = document.getElementById('dialogForm');
 const dialogSuccess = document.getElementById('dialogSuccess');
 const successMessage = document.getElementById('successMessage');
 
-// Select all buttons that lead to download
-const downloadButtons = document.querySelectorAll('.btn-download, .btn-primary, .btn-cta');
+// Tracks which platform was selected (windows or mac)
+let selectedPlatform = 'windows';
+
+const DOWNLOAD_FILES = {
+    windows: { file: 'Assistencialize-Setup.exe', label: 'Assistencialize-Setup.exe' },
+    mac: { file: 'Assistencialize-Setup-mac.dmg', label: 'Assistencialize-Setup-mac.dmg' }
+};
+
+// Select all buttons that open the download dialog
+const downloadTriggers = document.querySelectorAll('.open-download-dialog, .btn-primary, .btn-cta');
 
 if (downloadDialog) {
-    downloadButtons.forEach(btn => {
+    downloadTriggers.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
+            selectedPlatform = btn.dataset.platform || 'windows';
             downloadDialog.classList.add('active');
 
             // Reset state
@@ -124,46 +133,30 @@ if (downloadDialog) {
             // Send to Webhook
             await fetch('https://hook.eu1.make.com/p14kpbv9r9ddhn00zhcbf1qlmp0rh6c4', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     email: email,
+                    platform: selectedPlatform,
                     source: 'landing_page',
                     date: new Date().toISOString()
                 })
             });
 
-            console.log('Email enviado com sucesso:', email);
-
             // Hide Form, Show Success
             dialogForm.style.display = 'none';
             dialogSuccess.style.display = 'block';
 
-            // Check device type (Simple check)
             const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
             if (!isMobile) {
-                // Desktop: Start Download
-                successMessage.textContent = 'O download começará automaticamente em instantes...';
-
+                successMessage.textContent = 'Redirecionando para a página de instalação...';
                 setTimeout(() => {
-                    const link = document.createElement('a');
-                    link.href = 'Assistencialize-Setup.exe';
-                    link.download = 'Assistencialize-Setup.exe';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-
-                    // Close dialog after download starts
-                    setTimeout(() => {
-                        downloadDialog.classList.remove('active');
-                    }, 4000);
-                }, 1000);
+                    window.location.href = `obrigado.html?platform=${selectedPlatform}`;
+                }, 1200);
             } else {
-                // Mobile: Just show message
                 successMessage.textContent = 'Enviamos o link de instalação para o seu e-mail. Acesse pelo computador para instalar o Assistencialize.';
             }
+
 
         } catch (error) {
             console.error('Erro ao enviar email:', error);
@@ -173,5 +166,6 @@ if (downloadDialog) {
         }
     });
 }
+
 
 console.log('🚀 Assistencialize Landing Page carregada com sucesso!');

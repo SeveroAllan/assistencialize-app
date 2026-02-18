@@ -401,12 +401,29 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: none;
+    cursor: pointer;
 }
 
 .btn-cta:hover {
     transform: translateY(-2px);
     background: #e8cbbd;
     box-shadow: none;
+}
+
+.btn-cta-mac {
+    background: #1c1c1e;
+    color: #ffffff;
+}
+
+.btn-cta-mac:hover {
+    background: #2c2c2e;
+}
+
+.cta-download-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* FAQ Section */
@@ -506,12 +523,42 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: none;
+    cursor: pointer;
 }
 
 .btn-download:hover {
     transform: translateY(-2px);
     background: #e8cbbd;
     box-shadow: none;
+}
+
+.btn-download-mac {
+    background: #1c1c1e;
+    color: #ffffff;
+}
+
+.btn-download-mac:hover {
+    background: #2c2c2e;
+}
+
+.download-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.download-badge {
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.12);
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+}
+
+.btn-download-mac .download-badge {
+    background: rgba(255, 255, 255, 0.15);
 }
 
 /* Download Dialog */

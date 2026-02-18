@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download iniciado — Assistencialize</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        :root {
+            --pink: #F9DCCD;
+            --pink-dark: #e8cbbd;
+            --black: #1c1c1e;
+            --gray: #6b7280;
+            --light: #fef8f5;
+            --border: #f0ece8;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--black);
+            min-height: 100vh;
+        }
+
+        /* ── Header ── */
+        .header {
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+            background: white;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            text-align: center;
+            padding: 64px 24px 40px;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #d4f4dd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-icon svg {
+            color: #27c93f;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 520px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        /* ── Download Status Bar ── */
+        .download-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .download-status .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #27c93f;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+
+        .retry-link {
+            display: block;
+            font-size: 13px;
+            color: var(--gray);
+            text-decoration: none;
+            margin-bottom: 64px;
+        }
+
+        .retry-link:hover {
+            color: var(--black);
+            text-decoration: underline;
+        }
+
+        /* ── Steps Section ── */
+        .steps-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .steps-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--black);
+        }
+
+        .steps-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .step-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px 32px;
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            transition: box-shadow 0.2s;
+        }
+
+        .step-card:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Highlight the security warning step */
+        .step-card.highlight {
+            border-color: #fbbf24;
+            background: #fffbeb;
+        }
+
+        .step-number {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--black);
+            flex-shrink: 0;
+        }
+
+        .step-card.highlight .step-number {
+            background: #fef3c7;
+        }
+
+        .step-body h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--black);
+        }
+
+        .step-body p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .step-body p strong {
+            color: var(--black);
+        }
+
+        /* Warning badge */
+        .warning-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fef3c7;
+            border: 1px solid #fbbf24;
+            color: #92400e;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        /* Screenshot mockup for security step */
+        .security-mockup {
+            margin-top: 16px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .security-mockup-icon {
+            width: 40px;
+            height: 40px;
+            background: #e5e7eb;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .security-mockup-text {
+            flex: 1;
+        }
+
+        .security-mockup-text .mock-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 2px;
+        }
+
+        .security-mockup-text .mock-sub {
+            font-size: 11px;
+            color: #6b7280;
+        }
+
+        .security-mockup-btn {
+            background: var(--black);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: default;
+            white-space: nowrap;
+        }
+
+        /* Mac-specific security note */
+        .mac-note {
+            margin-top: 12px;
+            background: #f0f0f5;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .mac-note strong {
+            color: #111;
+        }
+
+        /* ── CTA at bottom ── */
+        .bottom-cta {
+            text-align: center;
+            padding: 0 24px 80px;
+        }
+
+        .bottom-cta p {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: var(--pink);
+            color: var(--black);
+            border: none;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-back:hover {
+            background: var(--pink-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .step-card {
+                flex-direction: column;
+                gap: 16px;
+                padding: 20px;
+            }
+
+            .security-mockup {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">Assistencialize</div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="success-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+
+        <h1>Obrigado! 🎉<br>Seu download está começando.</h1>
+        <p>O instalador será baixado automaticamente. Enquanto isso, veja o passo a passo para instalar sem erros.</p>
+
+        <div class="download-status">
+            <span class="dot"></span>
+            <span id="status-text">Iniciando download...</span>
+        </div>
+        <br>
+        <a href="#" id="retry-link" class="retry-link">O download não começou? Clique aqui para tentar novamente.</a>
+    </section>
+
+    <!-- Steps -->
+    <section class="steps-section">
+        <h2 class="steps-title">Como instalar em 4 passos simples</h2>
+
+        <div class="steps-grid">
+
+            <!-- Step 1 -->
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-body">
+                    <h3>Abra o arquivo baixado</h3>
+                    <p>Após o download terminar, abra o arquivo <strong
+                            id="filename-label">Assistencialize-Setup.exe</strong> que aparecerá no canto inferior do
+                        seu navegador ou na pasta <strong>Downloads</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Step 2 — Security Warning (highlighted) -->
+            <div class="step-card highlight">
+                <div class="step-number">2</div>
+                <div class="step-body">
+                    <div class="warning-badge">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                            </path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                        Atenção — Passo importante
+                    </div>
+                    <h3 id="security-title">Aceite o aviso de segurança do Windows</h3>
+                    <p id="security-desc">O Windows pode exibir um aviso <strong>"Windows protegeu seu
+                            computador"</strong>. Isso é normal para apps novos. Clique em <strong>"Mais
+                            informações"</strong> e depois em <strong>"Executar assim mesmo"</strong>.</p>
+
+                    <!-- Windows mockup -->
+                    <div class="security-mockup" id="windows-mockup">
+                        <div class="security-mockup-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280"
+                                stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <div class="security-mockup-text">
+                            <div class="mock-title">Windows protegeu seu computador</div>
+                            <div class="mock-sub">Clique em "Mais informações" → "Executar assim mesmo"</div>
+                        </div>
+                        <div class="security-mockup-btn">Mais informações</div>
+                    </div>
+
+                    <!-- Mac mockup (hidden by default) -->
+                    <div class="mac-note" id="mac-note" style="display:none;">
+                        <strong>No Mac:</strong> O sistema pode exibir <em>"Assistencialize não pode ser aberto porque é
+                            de um desenvolvedor não identificado"</em>.<br><br>
+                        Para resolver: vá em <strong>Preferências do Sistema → Privacidade e Segurança</strong> e clique
+                        em <strong>"Abrir mesmo assim"</strong> ao lado do nome do app.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-body">
+                    <h3 id="step3-title">Conclua a instalação</h3>
+                    <p id="step3-desc">Siga as instruções do instalador. O processo leva menos de 1 minuto. O
+                        Assistencialize será instalado e abrirá automaticamente.</p>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-body">
+                    <h3>Faça login e comece a usar</h3>
+                    <p>Crie sua conta ou faça login com o e-mail que você cadastrou. Adicione seus perfis de WhatsApp e
+                        comece a atender com muito mais organização! 🚀</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="bottom-cta">
+        <p>Ficou com dúvida? Fale com nosso suporte.</p>
+        <a href="https://wa.me/555193527271?text=Preciso%20de%20ajuda%20para%20instalar%20o%20Assistencialize"
+            target="_blank" class="btn-back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            </svg>
+            Falar com suporte
+        </a>
+    </div>
+
+    <script>
+        // Read platform from URL: obrigado.html?platform=mac or ?platform=windows
+        const params = new URLSearchParams(window.location.search);
+        const platform = params.get('platform') || 'windows';
+        const isMac = platform === 'mac';
+
+        const FILES = {
+            windows: 'Assistencialize-Setup.exe',
+            mac: 'Assistencialize-Setup-mac.dmg'
+        };
+
+        const file = FILES[platform] || FILES.windows;
+
+        // Update filename label in step 1
+        document.getElementById('filename-label').textContent = file;
+
+        // Adapt security step for Mac
+        if (isMac) {
+            document.getElementById('security-title').textContent = 'Aceite o aviso de segurança do Mac';
+            document.getElementById('security-desc').textContent = '';
+            document.getElementById('windows-mockup').style.display = 'none';
+            document.getElementById('mac-note').style.display = 'block';
+
+            document.getElementById('step3-title').textContent = 'Arraste para Applications e abra';
+            document.getElementById('step3-desc').textContent = 'No instalador .dmg, arraste o ícone do Assistencialize para a pasta Applications. Depois abra o app pela primeira vez.';
+        }
+
+        // Start download automatically
+        function startDownload() {
+            const link = document.createElement('a');
+            link.href = file;
+            link.download = file;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            document.getElementById('status-text').textContent = 'Download iniciado! Verifique sua pasta Downloads.';
+        }
+
+        // Retry link
+        document.getElementById('retry-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            startDownload();
+        });
+
+        // Auto-start after 1s
+        setTimeout(startDownload, 1000);
+    </script>
+
+</body>
+
+</html>
