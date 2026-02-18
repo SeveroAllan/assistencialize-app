@@ -37,6 +37,5 @@ yarn-error.log*
 *.asar
 
 # Package managers
-package-lock.json
 yarn.lock
 pnpm-lock.yaml
