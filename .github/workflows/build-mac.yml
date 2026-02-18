@@ -27,25 +27,22 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build macOS DMG
-        run: npm run build -- --mac
+      - name: Create and push git tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -f ${{ github.event.inputs.version }}
+          git push origin ${{ github.event.inputs.version }} --force
+
+      - name: Build macOS DMG and publish to GitHub Release
+        run: npm run build -- --mac --publish always
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Code signing (optional — remove if you don't have a certificate)
-          # CSC_LINK: ${{ secrets.MAC_CERTS }}
-          # CSC_KEY_PASSWORD: ${{ secrets.MAC_CERTS_PASSWORD }}
-          # APPLE_ID: ${{ secrets.APPLE_ID }}
-          # APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
-          # APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
 
-      - name: Create GitHub Release and upload DMG
-        uses: softprops/action-gh-release@v2
+      - name: Upload DMG as artifact (fallback)
+        uses: actions/upload-artifact@v4
         with:
-          tag_name: ${{ github.event.inputs.version }}
-          name: "Assistencialize ${{ github.event.inputs.version }} (macOS)"
-          draft: false
-          prerelease: false
-          files: dist/*.dmg
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: Assistencialize-macOS
+          path: dist/*.dmg
+          if-no-files-found: warn
 
