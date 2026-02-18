@@ -49,28 +49,36 @@ async function checkInstanceLimit(userId, currentCount) {
     // 2. Buscar assinatura
     const subscription = await getUserSubscription(userId);
 
-    // 3. Definir regras padrão (Fallback para plano Gratuito se necessário, ou bloquear se obrigatório ter plano)
-    // Se não tiver assinatura ativa, vamos assumir 1 instância gratuita por segurança, ou 0.
-    // O usuário forneceu tabelas, não disse a regra para "sem plano".
-    // Vou assumir que sem registro na tabela = plano básico (1 instância ou bloqueado).
-    // Geralmente sistemas SaaS têm um free tier. Se não achar, vou permitir 1 para teste ou bloquear.
-    // Melhor abordagem: Se não tiver assinatura, bloqueia ou libera 1. Vou liberar 1 por enquanto.
-
-    let maxInstances = 1;
+    // 3. Definir regras
+    let maxInstances = 2; // Default Free Plan limit
     let planName = 'Gratuito';
 
     if (subscription && subscription.plan) {
         maxInstances = subscription.plan.max_instances;
         planName = subscription.plan.name;
     } else {
-        // Se não tiver registro, e para não quebrar o app de quem está testando sem pagar:
-        maxInstances = 1;
+        // Se não tiver assinatura ativa, busca plano 'Free' no banco para garantir consistência
+        const { data: freePlan, error } = await supabase
+            .from('plans')
+            .select('max_instances, name')
+            .ilike('name', '%free%') // Busca por 'Free', 'free', 'Plano Free', etc.
+            .maybeSingle();
+
+        if (freePlan) {
+            maxInstances = freePlan.max_instances;
+            planName = freePlan.name;
+        } else {
+            // Fallback se não existir plano 'Free' cadastrado no banco
+            console.warn('Plano Free não encontrado no banco, usando fallback hardcoded: 2 instâncias.');
+            maxInstances = 2;
+            planName = 'Gratuito (Padrão)';
+        }
     }
 
     if (currentCount >= maxInstances) {
         return {
             allowed: false,
-            message: `Seu plano "${planName}" permite apenas ${maxInstances} instância(s). Faça upgrade para adicionar mais.`,
+            message: `Seu plano "${planName}" permite apenas ${maxInstances} instâncias conectadas. Faça upgrade para adicionar mais.`,
             maxDetails: { max: maxInstances, current: currentCount }
         };
     }

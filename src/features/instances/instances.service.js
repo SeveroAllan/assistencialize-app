@@ -97,4 +97,125 @@ async function deleteInstance(id) {
     return true;
 }
 
-module.exports = { fetchInstances, createInstance, updateInstanceName, deleteInstance };
+/**
+ * Fetch all folders for the current user.
+ * @param {string} userId
+ * @returns {Promise<Array>}
+ */
+async function fetchFolders(userId) {
+    if (!userId) return [];
+
+    const { data, error } = await supabase
+        .from('folders')
+        .select('*')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: true });
+
+    if (error) {
+        console.error('Error fetching folders:', error);
+        return [];
+    }
+
+    return data;
+}
+
+/**
+ * Creates a new folder.
+ * @param {string} userId
+ * @param {string} name
+ * @returns {Promise<object|null>}
+ */
+async function createFolder(userId, name) {
+    if (!userId) return null;
+
+    const { data, error } = await supabase
+        .from('folders')
+        .insert([{ user_id: userId, name: name }])
+        .select()
+        .single();
+
+    if (error) {
+        console.error('Error creating folder:', error);
+        return null;
+    }
+
+    return data;
+}
+
+/**
+ * Deletes a folder.
+ * @param {string} id
+ * @returns {Promise<boolean>}
+ */
+async function deleteFolder(id) {
+    if (!id) return false;
+
+    const { error } = await supabase
+        .from('folders')
+        .delete()
+        .eq('id', id);
+
+    if (error) {
+        console.error('Error deleting folder:', error);
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * Moves an instance to a folder.
+ * @param {string} instanceId
+ * @param {string|null} folderId
+ * @returns {Promise<boolean>}
+ */
+async function updateInstanceFolder(instanceId, folderId) {
+    if (!instanceId) return false;
+
+    // folderId can be null to move back to root
+    const { error } = await supabase
+        .from('whatsapp_instances')
+        .update({ folder_id: folderId })
+        .eq('id', instanceId);
+
+    if (error) {
+        console.error('Error moving instance:', error);
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * Updates a folder name.
+ * @param {string} id
+ * @param {string} name
+ * @returns {Promise<boolean>}
+ */
+async function updateFolderName(id, name) {
+    if (!id) return false;
+
+    const { error } = await supabase
+        .from('folders')
+        .update({ name: name })
+        .eq('id', id);
+
+    if (error) {
+        console.error('Error updating folder name:', error);
+        return false;
+    }
+
+    return true;
+}
+
+module.exports = {
+    fetchInstances,
+    createInstance,
+    updateInstanceName,
+    deleteInstance,
+    fetchFolders,
+    createFolder,
+    deleteFolder,
+    updateInstanceFolder,
+    updateFolderName
+};

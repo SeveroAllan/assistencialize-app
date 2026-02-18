@@ -1,6 +1,6 @@
 {
   "name": "assistencialize",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "description": "Meu App Multi WhatsApp",
   "main": "main.js",
   "scripts": {
@@ -20,7 +20,7 @@
       "index.html",
       "renderer.js",
       "styles.css",
-      "icon.png",
+      "logo-assistencialize-novo.ico",
       "src/**/*"
     ],
     "publish": [
@@ -33,7 +33,7 @@
     ],
     "win": {
       "target": "nsis",
-      "icon": "icon.png"
+      "icon": "logo-assistencialize-novo.ico"
     },
     "mac": {
       "target": "dmg",

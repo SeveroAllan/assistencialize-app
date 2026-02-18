@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistencialize - Atenda vários WhatsApp sem trocar de tela</title>
+    <meta name="description"
+        content="Gerencie múltiplas contas do WhatsApp simultaneamente em uma única interface moderna e intuitiva.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animations.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span>Assistencialize</span>
+                </div>
+                <nav class="nav">
+                    <a href="#inicio">Início</a>
+                    <a href="#solucoes">Soluções</a>
+                    <a href="#sobre">Sobre</a>
+                    <a href="#faq">Perguntas</a>
+                    <a href="#contato" class="btn-contact">Entrar em contato</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <!-- Hero Icon -->
+            <div style="display: flex; justify-content: center; margin-bottom: 24px;">
+                <div
+                    style="width: 80px; height: 80px; background: rgba(255, 99, 152, 0.1); border-radius: 20px; display: flex; align-items: center; justify-content: center; padding: 15px;">
+                    <img src="Group 2 (2).svg" alt="Assistencialize Logo" style="width: 100%; height: auto;">
+                </div>
+            </div>
+
+            <h1 class="hero-title" style="margin-bottom: 32px;">
+                O navegador criado<br>para assistentes
+            </h1>
+
+            <div class="hero-buttons">
+                <a href="#download" class="btn-primary">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Facilite sua vida hoje
+                </a>
+            </div>
+
+            <div class="hero-dashboard">
+                <img src="hero-dashboard.png" alt="Assistencialize Dashboard"
+                    style="width: 100%; max-width: 1000px; border-radius: 12px; margin-top: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="solucoes" class="features" style="padding: 100px 0;">
+        <div class="container">
+            <h2 class="section-title" style="font-size: 40px; margin-bottom: 60px;">Ficou fácil gerenciar<br>multiplos
+                clientes</h2>
+
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card"
+                    style="background-color: #E6E9FA; border: none; padding: 48px; height: 100%; border-radius: 24px; position: relative; overflow: hidden;">
+                    <span
+                        style="display: block; font-size: 14px; text-transform: uppercase; color: #666; margin-bottom: 24px; letter-spacing: 1px;">CLIENTES</span>
+                    <h3 style="font-size: 32px; font-weight: 700; margin-bottom: 24px;">Navegue entre perfis</h3>
+                    <p style="font-size: 16px; color: #555; line-height: 1.6; margin-bottom: 24px;">
+                        Cada perfil é um espaço de trabalho completo: WhatsApp próprio, sites salvos, sessões ativas.
+                        Veja todos na barra lateral e alterne com 1 clique — sem fechar abas ou trocar de janela.
+                    </p>
+                    <p style="color: #FF6398; font-weight: 600;">Clique para adicionar seu primeiro perfil</p>
+
+                    <!-- App Animation Mockup -->
+                    <div class="mockup-container"
+                        style="background: white; padding: 20px; border-radius: 12px; margin-top: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); overflow: hidden;">
+                        <div class="mockup-header" style="display: flex; gap: 8px; margin-bottom: 16px;">
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background: #FF5F57;"></div>
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background: #FEBC2E;"></div>
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background: #28C840;"></div>
+                        </div>
+
+                        <div class="sidebar-list">
+                            <!-- Cursor -->
+                            <div class="cursor-switch"></div>
+
+                            <!-- List Item 1 -->
+                            <div class="sidebar-item item-1">
+                                <div class="avatar-badge">W1</div>
+                                <span class="profile-name">Alice</span>
+                                <div class="wa-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- List Item 2 -->
+                            <div class="sidebar-item item-2">
+                                <div class="avatar-badge">W2</div>
+                                <span class="profile-name">Dr. Antonio</span>
+                                <div class="wa-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- List Item 3 -->
+                            <div class="sidebar-item">
+                                <div class="avatar-badge">W3</div>
+                                <span class="profile-name">Dra. Roberta</span>
+                                <div class="wa-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="add-btn">
+                                + Adicionar Perfil
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card"
+                    style="background-color: #FFF9B1; border: none; padding: 48px; height: 100%; border-radius: 24px;">
+                    <span
+                        style="display: block; font-size: 14px; text-transform: uppercase; color: #666; margin-bottom: 24px; letter-spacing: 1px;">ATENDIMENTO</span>
+                    <h3 style="font-size: 32px; font-weight: 700; margin-bottom: 24px;">Múltiplos WhatsApp</h3>
+                    <p style="font-size: 16px; color: #555; line-height: 1.6; margin-bottom: 24px;">
+                        Cada cliente tem seu próprio WhatsApp Web sempre ativo. Alertas visuais mostram quem mandou
+                        mensagem — mesmo nos perfis fechados. Zero login/logout, 100% produtividade.
+                    </p>
+
+                    <!-- Notification Animation Mockup -->
+                    <div class="mockup-container"
+                        style="background: transparent; padding: 0; box-shadow: none; border: none; margin-top: 20px; overflow: visible; position: relative; display: flex; justify-content: center; align-items: center; min-height: 200px;">
+
+                        <!-- Simple Profile List - Transparent Background -->
+                        <div class="sidebar-list"
+                            style="width: 100%; max-width: 320px; padding: 0; background: transparent; box-shadow: none; display: flex; flex-direction: column; gap: 12px;">
+
+                            <!-- List Item 1 - Active with Blinking Dot -->
+                            <div class="sidebar-item"
+                                style="border-color: rgba(0,0,0,0.05); margin-bottom: 0; background: rgba(255,255,255,0.6); backdrop-filter: blur(4px);">
+                                <div class="avatar-badge" style="position: relative;">
+                                    W1
+                                    <div class="blink-dot"
+                                        style="top: 0; right: 0; width: 10px; height: 10px; border-width: 2px;"></div>
+                                </div>
+                                <span class="profile-name">Alice</span>
+                                <div class="wa-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- List Item 2 -->
+                            <div class="sidebar-item"
+                                style="border-color: rgba(0,0,0,0.05); background: rgba(255,255,255,0.6); backdrop-filter: blur(4px);">
+                                <div class="avatar-badge">W2</div>
+                                <span class="profile-name">Dr. Antonio</span>
+                                <div class="wa-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- Push Notification -->
+                            <div class="push-notification"
+                                style="width: 100%; left: 0; right: 0; margin-top: 10px; position: relative; bottom: auto; transform: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                <div style="display: flex; flex-direction: column; width: 100%;">
+                                    <div class="push-header">
+                                        <div class="push-app-info">
+                                            <div class="push-app-icon">
+                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path
+                                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                                                </svg>
+                                            </div>
+                                            <span class="push-app-name">Assistencialize</span>
+                                        </div>
+                                        <span class="push-time">Agora</span>
+                                    </div>
+                                    <div class="push-body">
+                                        <div class="push-avatar">
+                                            <div
+                                                style="width: 100%; height: 100%; background: #6c5ce7; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 14px;">
+                                                M</div>
+                                        </div>
+                                        <div class="push-content">
+                                            <div class="push-title">WhatsApp de Alice</div>
+                                            <div class="push-text">Oi, gostaria de agendar um horário para amanhã às
+                                                14h?</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organization Section -->
+    <section class="organization">
+        <div class="container">
+            <h2 class="section-title">Organização,<br>agilidade e clareza</h2>
+
+            <div class="org-grid">
+                <div class="org-card">
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Fim da confusão de abas</h3>
+                    <p style="font-size: 16px; color: #666; font-weight: 500;">
+                        Pare de se perder entre dezenas de abas do Chrome. Cada cliente tem seu próprio ícone na barra
+                        lateral.
+                    </p>
+                </div>
+                <div class="org-card">
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Notificações unificadas</h3>
+                    <p style="font-size: 16px; color: #666; font-weight: 500;">
+                        Veja quem mandou mensagem sem precisar abrir o perfil. O contador (bolinha verde e vermelha)
+                        avisa onde precisa de atenção.
+                    </p>
+                </div>
+                <div class="org-card">
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Sessões independentes</h3>
+                    <p style="font-size: 16px; color: #666; font-weight: 500;">
+                        O que você loga em um perfil, fica só nele. Acesse e-mail, Canva e ferramentas do cliente sem
+                        misturar com os seus.
+                    </p>
+                </div>
+                <div class="org-card">
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Foco total no atendimento</h3>
+                    <p style="font-size: 16px; color: #666; font-weight: 500;">
+                        Interface limpa e sem distrações. Tudo o que você precisa para responder rápido está a um clique
+                        de distância.
+                    </p>
+                </div>
+                <div class="org-card">
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Áudio em segundo plano</h3>
+                    <p style="font-size: 16px; color: #666; font-weight: 500;">
+                        Ouça áudios de um cliente enquanto responde outro. A multitarefa real que o navegador comum não
+                        permite.
+                    </p>
+                </div>
+                <div class="org-card">
+                    <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Leve e rápido</h3>
+                    <p style="font-size: 16px; color: #666; font-weight: 500;">
+                        Consome menos memória que manter vários Chrome abertos. Seu computador agradece, e seu trabalho
+                        flui.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Elite Section -->
+    <section class="elite">
+        <div class="container">
+            <h2 class="section-title">Faça parte da elite<br>assistencialize</h2>
+            <div class="elite-cards">
+                <!-- Step 1: Download -->
+                <div class="step-card blue">
+                    <div class="step-header">
+                        <div class="step-number">Passo 01</div>
+                        <h3 class="step-title">Baixe o<br>Assistencialize</h3>
+                        <p class="step-desc">Faça o download gratuito e instale em menos de 1 minuto em seu Windows.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="installer-mockup">
+                            <div class="installer-header">
+                                <div class="installer-icon">A</div>
+                                <div class="installer-title"></div>
+                            </div>
+                            <div style="font-size: 10px; color: #888; margin-bottom: 4px;">Instalando...</div>
+                            <div class="installer-bar">
+                                <div class="installer-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Add Accounts -->
+                <div class="step-card purple">
+                    <div class="step-header">
+                        <div class="step-number">Passo 02</div>
+                        <h3 class="step-title">Adicione<br>suas contas</h3>
+                        <p class="step-desc">Conecte quantos WhatsApps precisar. É só escanear o QR Code.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="mini-sidebar">
+                            <div class="mini-avatar active">W1</div>
+                            <div class="mini-avatar new">W2</div>
+                            <div class="mini-add">+</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Manage -->
+                <div class="step-card green">
+                    <div class="step-header">
+                        <div class="step-number">Passo 03</div>
+                        <h3 class="step-title">Comece a<br>gerenciar</h3>
+                        <p class="step-desc">Pronto! Alterne entre perfis com um clique e atenda todos ao mesmo tempo.
+                        </p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="mini-chat">
+                            <div class="chat-bubble in">Oi, gostaria de um orçamento</div>
+                            <div class="chat-bubble out">Olá! Claro, vou te enviar nossa tabela</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Você facilita a vida do seu cliente.<br>Agora é hora de facilitar a sua.</h2>
+                <a href="#download" class="btn-cta">Começar grátis</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Perguntas feitas com frequentes</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>O Assistencialize é realmente gratuito?</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Você pode usar gratuitamente com até 2 contas do WhatsApp. Para mais contas, temos
+                            planos acessíveis.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Funciona em Mac e Windows?</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Atualmente o Assistencialize está disponível apenas para Windows 10/11. Versão para Mac em
+                            breve!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Minhas conversas ficam seguras?</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Todas as conversas mantêm a criptografia de ponta a ponta do WhatsApp. Não armazenamos
+                            suas mensagens.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Posso usar no celular?</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O Assistencialize é um aplicativo desktop. Você continua usando o WhatsApp normalmente no
+                            celular.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+        <div class="container">
+            <div class="download-card">
+                <h2>Baixe agora o Assistencialize</h2>
+                <p>Versão 1.0.5 • Windows 10/11 • ~97 MB</p>
+                <a href="Assistencialize-Setup.exe" class="btn-download" download>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download Gratuito
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Assistencialize</h3>
+                    <p>Gerencie múltiplas contas do WhatsApp com facilidade.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Produto</h4>
+                        <a href="#solucoes">Soluções</a>
+                        <a href="#download">Download</a>
+                        <a href="#faq">FAQ</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Suporte</h4>
+                        <a href="https://wa.me/555193527271" target="_blank">WhatsApp</a>
+                        <a href="https://wa.me/555193527271?text=Preciso%20de%20ajuda" target="_blank">Ajuda</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Assistencialize. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Download Dialog -->
+    <div class="download-dialog-overlay" id="downloadDialog">
+        <div class="download-dialog">
+            <button class="dialog-close" id="closeDialog">&times;</button>
+            <div id="dialogForm">
+                <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">Quase lá!</h3>
+                <p style="color: #666; margin-bottom: 24px; font-size: 14px;">Cadastre seu e-mail para liberar o
+                    download gratuito.</p>
+                <form id="emailForm">
+                    <input type="email" class="dialog-input" placeholder="Seu melhor e-mail" required>
+                    <button type="submit" class="btn-submit">Liberar Download</button>
+                </form>
+            </div>
+            <div id="dialogSuccess" style="display: none; text-align: center;">
+                <div
+                    style="width: 60px; height: 60px; background: #D4F4DD; color: #27c93f; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">Sucesso!</h3>
+                <p id="successMessage" style="color: #666; font-size: 14px; line-height: 1.5;">O download começará
+                    automaticamente.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

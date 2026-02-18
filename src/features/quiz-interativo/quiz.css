@@ -1,0 +1,362 @@
+/* Global Styles */
+:root {
+    --primary-color: #FF6398;
+    --primary-hover: #e05585;
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --font-family: 'Manrope', sans-serif;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    height: 100%;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    /* Center the quiz container */
+    align-items: center;
+    /* Center vertically */
+}
+
+/* Quiz Container */
+.quiz-container {
+    width: 100%;
+    max-width: 480px;
+    /* Mobile-first width like the image */
+    background: var(--card-bg);
+    /* Or transparent if simulating a phone */
+    height: 100vh;
+    /* Full height or specific height */
+    max-height: 900px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    /* Subtle shadow for desktop view */
+    overflow: hidden;
+}
+
+/* Header */
+.quiz-header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.back-btn:hover {
+    background-color: #f1f5f9;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 6px;
+    background-color: #e2e8f0;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #3b82f6;
+    /* Blue as in image progress bar, or use primary? Image shows blue progress bar */
+    border-radius: 99px;
+    transition: width 0.3s ease;
+}
+
+
+/* Content */
+.quiz-content {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.quiz-info-badge {
+    background-color: #ecfdf5;
+    /* Light green bg */
+    color: #059669;
+    /* Green text */
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.emoji {
+    font-size: 1.2rem;
+}
+
+.quiz-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    /* Extra bold */
+    text-align: center;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+    color: #000;
+}
+
+.quiz-title span {
+    color: #3b82f6;
+    /* Blue highlight in image "AGORA!" */
+}
+
+/* Custom highlight if needed */
+/* The user text "Vamos organizar seus atendimentos" */
+
+.quiz-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+/* Options Grid */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+    margin-bottom: auto;
+    /* Push button to bottom */
+}
+
+/* Option Card */
+.option-card {
+    background: #ffffff;
+    border: 2px solid transparent;
+    /* Prepare for selected state border */
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.option-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.option-card.selected {
+    border-color: var(--primary-color);
+    /* Selected border */
+    background-color: #ffffff;
+    /* Could add a tint */
+}
+
+.card-header {
+    height: 40px;
+    /* Space for action icons */
+    display: flex;
+    justify-content: flex-start;
+    padding: 8px;
+    background: rgba(59, 130, 246, 0.1);
+    /* Light blue bg for header area in image? Or just transparent */
+    background: #3b82f6;
+    /* Blue header area in image? Seems like blue header then image */
+    background: transparent;
+    /* Let's keep it clean since I don't see the exact image */
+    /* Wait, the image shows blue card header for "Homem" and "Mulher" cards? 
+       Usually cards have images. Let's make the image take up most space. */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    /* Hide icons for now unless needed */
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.option-card:hover .card-header {
+    opacity: 1;
+    /* Show icons on hover */
+}
+
+.action-icons {
+    display: flex;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #3b82f6;
+    /* Blue icons */
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.icon-btn:hover {
+    background: #eff6ff;
+}
+
+.card-image {
+    width: 100%;
+    height: 180px;
+    /* Fixed height for image area */
+    background-color: #f1f5f9;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-footer {
+    padding: 12px;
+    background-color: #3b82f6;
+    /* Blue footer background like the image seems to have for unselected? Or selected? */
+    /* Wait, the image likely has blue selected state. Unselected is usually grey.
+       "A cor primária será #FF6398". Let's use that for active state.
+    */
+    background-color: var(--bg-color);
+    /* Default footer */
+    transition: background-color 0.2s;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.option-card.selected .card-footer {
+    background-color: var(--primary-color);
+    /* Pink footer when selected */
+}
+
+.radio-select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.option-card.selected .radio-select {
+    color: white;
+    /* White text when selected */
+}
+
+.radio-circle {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #cbd5e1;
+    border-radius: 50%;
+    position: relative;
+    /* Inside dot */
+}
+
+.option-card.selected .radio-circle {
+    border-color: white;
+    /* White border */
+}
+
+.option-card.selected .radio-circle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    /* White dot */
+    border-radius: 50%;
+}
+
+
+/* Continue Button */
+.continue-btn {
+    width: 100%;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 24px;
+    box-shadow: 0 4px 6px -1px rgba(255, 99, 152, 0.4);
+    /* Pink shadow */
+}
+
+.continue-btn:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 8px -1px rgba(255, 99, 152, 0.5);
+}
+
+.continue-btn:disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.quiz-content>* {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.option-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.option-card:nth-child(2) {
+    animation-delay: 0.2s;
+}

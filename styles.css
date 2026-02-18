@@ -12,7 +12,8 @@ html {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: #f0f2f5;
+    background-color: #FEF8F5;
+    /* System Background */
     font-size: 13px;
     /* Reduced base font size */
 }
@@ -27,35 +28,244 @@ html {
 
 /* --- Global Header --- */
 .global-header {
-    height: 42px;
-    /* Reduced from 60px */
-    background-color: #202124;
+    height: 47px;
+    background-color: #F9DCCD;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 10px;
-    /* Reduced padding */
+    padding: 5px 10px 0 10px;
     -webkit-app-region: drag;
-    border-bottom: 1px solid #2f3136;
+    border-bottom: none;
     flex-shrink: 0;
 }
 
-.brand {
+/* No Mac, reserva espaço à esquerda para os traffic lights nativos */
+body.is-mac .global-header {
+    padding-left: 80px;
+}
+
+/* No Mac, esconde os botões customizados de fechar/minimizar/maximizar
+   pois o Mac usa os traffic lights nativos */
+body.is-mac .controls {
+    display: none !important;
+}
+
+/* --- Subheader --- */
+.subheader {
+    height: auto;
+    /* Altura automática para acomodar input com margens */
+    min-height: 50px;
+    background-color: #FEF8F5;
+    /* System Background */
     display: flex;
     align-items: center;
+    gap: 16px;
+    padding: 1px 3px;
+    border-bottom: none;
+    /* Remove separator line */
+    flex-shrink: 0;
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: #57534e;
+    /* Warm gray */
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.nav-btn:hover {
+    background-color: #e7e5e4;
+    color: #1c1917;
+}
+
+.nav-btn svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.9;
+}
+
+.url-bar-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Center the input container */
+}
+
+#url-input {
+    width: 100%;
+    /* max-width removido para ocupar espaço restante */
+    background-color: #f3f4f6;
+    /* Cinza mais claro */
+    border: none;
+    /* Sem linha */
+    border-radius: 9999px;
+    /* Arredondamento 100% */
+    color: #1f2937;
+    padding: 8px 16px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    /* Aumentar padding lateral */
+    font-size: 13px;
+    outline: none;
+    transition: background-color 0.2s;
+    text-align: center;
+}
+
+#url-input:focus {
+    background-color: #ffffff;
+    /* Clarear ao focar para feedback */
+    text-align: left;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+    /* Sutil focus ring opcional */
+}
+
+.nav-home {
+    display: flex;
+    align-items: center;
+}
+
+/* Tabs Container */
+.tabs-container {
+    display: flex;
+    align-items: flex-end;
+    /* Align tabs to bottom to connect with subheader */
+    height: 100%;
+    margin-right: auto;
+    /* Empurra o resto para a direita */
+    -webkit-app-region: no-drag;
+    gap: 4px;
+    padding-left: 8px;
+    /* Pequeno ajuste */
+}
+
+/* Tab Item */
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+    height: 34px;
+    /* Increased height */
+    background-color: transparent;
+    color: #4b5563;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    /* Top rounded only */
+    border: 1px solid transparent;
+    border-bottom: none;
+    transition: all 0.2s;
+    position: relative;
+    max-width: 160px;
+    min-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+    margin-bottom: 0;
+}
+
+.tab:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+.tab.active {
+    background-color: #FEF8F5;
+    /* System Background */
+    color: #1c1917;
+    /* Warm black */
+    border: 1px solid #e7e5e4;
+    border-bottom: 1px solid #FEF8F5;
+    /* Match background */
+    box-shadow: none;
+    z-index: 10;
+    margin-bottom: -1px;
+    height: 35px;
+    /* Cover border */
+}
+
+.tab svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+.tab span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Close Tab Button (X) - hidden by default unless hovered or active? Or always visible on hover */
+.close-tab-btn {
+    margin-left: auto;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    opacity: 0;
+    /* Hidden by default */
+    transition: opacity 0.2s, background 0.2s;
+}
+
+.tab:hover .close-tab-btn,
+.tab.active .close-tab-btn {
+    opacity: 1;
+}
+
+.close-tab-btn:hover {
+    background-color: #4b4e54;
+    color: white;
+}
+
+/* Add Tab Button */
+.add-tab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 2px;
+    transition: all 0.2s;
     -webkit-app-region: no-drag;
 }
 
-.brand h1 {
-    font-size: 15px;
-    /* Reduced from 20px */
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: -0.3px;
+.add-tab-btn:hover {
+    background-color: #2f3136;
+    color: #e5e7eb;
 }
 
-.brand h1 span {
-    color: #a855f7;
+.add-tab-btn svg {
+    width: 16px;
+    height: 16px;
 }
 
 .header-actions {
@@ -70,7 +280,7 @@ html {
 .icon-btn {
     background: transparent;
     border: none;
-    color: #9ca3af;
+    color: #4b5563;
     cursor: pointer;
     padding: 6px;
     /* Reduced padding */
@@ -83,8 +293,8 @@ html {
 }
 
 .icon-btn:hover {
-    background-color: #2f3136;
-    color: #e5e7eb;
+    background-color: #f3f4f6;
+    color: #111827;
 }
 
 .icon-btn svg {
@@ -115,7 +325,7 @@ html {
 
 .avatar-btn:hover,
 .avatar-btn.active {
-    border-color: #a855f7;
+    border-color: #9ca3af;
 }
 
 .avatar-btn img {
@@ -138,7 +348,7 @@ html {
 .controls button {
     background: transparent;
     border: none;
-    color: #9ca3af;
+    color: #4b5563;
     cursor: pointer;
     width: 28px;
     /* Reduced from 32px */
@@ -157,8 +367,8 @@ html {
 }
 
 .controls button:hover {
-    background-color: #2f3136;
-    color: #fff;
+    background-color: #f3f4f6;
+    color: #111827;
 }
 
 #close-btn:hover {
@@ -174,26 +384,33 @@ html {
 }
 
 /* --- Sidebar --- */
+/* --- Sidebar --- */
 .sidebar {
     width: 260px;
-    /* Increased from 220px */
-    background-color: #202124;
+    background-color: #FEF8F5;
+    /* System Background */
     display: flex;
     flex-direction: column;
-    border-right: 1px solid #2f3136;
+    border-right: none;
+    /* Remove separator line */
     padding: 12px;
-    /* Increased padding from 8px */
+    padding-bottom: 0;
+    /* Bottom padding handled by footer */
     flex-shrink: 0;
+    overflow: hidden;
 }
 
 .instances-list {
     flex-grow: 1;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    /* Increased gap */
-    padding-bottom: 10px;
+    padding-bottom: 12px;
+    /* Small gap before buttons */
+    padding-right: 4px;
+    /* Removed large padding-bottom since footer is not absolute anymore */
 }
 
 /* Scrollbar styling for sidebar */
@@ -214,11 +431,11 @@ html {
 /* Instance Card/Button */
 .instance-button {
     width: 100%;
-    background-color: #2b2d31;
+    background-color: #ffffff;
     /* Cleaner look when inactive */
-    color: #9ca3af;
+    color: #4b5563;
     /* Dimmer text when inactive */
-    border: 1px solid transparent;
+    border: 1px solid #e5e7eb;
     border-radius: 14px;
     /* Larger radius */
     padding: 10px 14px;
@@ -236,14 +453,14 @@ html {
 }
 
 .instance-button:hover {
-    background-color: #35373c;
-    color: #e5e7eb;
+    background-color: #f3f4f6;
+    color: #111827;
 }
 
 .instance-button.active {
-    background-color: #35373c;
-    color: #e5e7eb;
-    border: 1px solid #a855f7;
+    background-color: #ffffff;
+    color: #111827;
+    border: 1px solid #F9DCCD;
     /* Full border */
     border-radius: 14px;
     /* Consistent radius */
@@ -300,9 +517,9 @@ html {
 
 .profile-name-input {
     flex-grow: 1;
-    background: #18191c;
-    border: 1px solid #a855f7;
-    color: #fff;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #111827;
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 13px;
@@ -340,15 +557,238 @@ html {
 
 /* Sidebar Footer & Add Button */
 .sidebar-footer {
+    position: relative;
+    /* Normal flow */
+    width: 100%;
+    background-color: transparent;
+    /* No background needed */
+    padding: 0;
+    /* Reset padding */
     padding-top: 8px;
+    /* Gap from list */
+    padding-bottom: 12px;
+    /* Margin from bottom edge */
+    z-index: 1;
+    box-shadow: none;
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+    /* Ensure it stays put */
     margin-top: auto;
+    /* Push to bottom if list is short */
 }
+
+/* --- Folder System Styles - CLEAN VERSION --- */
+.folder-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2px;
+    border-radius: 0;
+    overflow: visible;
+    transition: all 0.3s ease;
+    border: none;
+    background-color: transparent;
+    flex-shrink: 0;
+}
+
+/* --- Folder System Styles - UPDATE 3 - REFINED --- */
+.folder-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px !important;
+    cursor: pointer;
+    background-color: #f9dccd !important;
+    /* Solicitação do usuário */
+    border: 1px solid transparent;
+    color: #000000 !important;
+    /* Texto preto */
+    font-size: 13px;
+    font-weight: 500 !important;
+    user-select: none;
+    transition: all 0.2s;
+    border-radius: 8px;
+    margin-bottom: 4px;
+}
+
+.folder-header:hover {
+    filter: brightness(0.95);
+    /* Leve escurecimento no hover */
+}
+
+/* Left Side: Icon + Name */
+.folder-left {
+    display: flex;
+    align-items: center;
+    gap: 2px !important;
+    /* Text very close to icon */
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.folder-icon {
+    width: 18px;
+    height: 18px;
+    color: currentColor !important;
+    stroke: currentColor;
+    fill: none !important;
+    opacity: 0.7;
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.folder-header:hover .folder-icon {
+    opacity: 1;
+}
+
+.folder-name {
+    flex-grow: 1;
+    margin-left: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #000000 !important;
+    font-weight: 600;
+    /* Um pouco mais de peso para destacar */
+}
+
+.folder-header svg,
+.folder-header path,
+.folder-header circle,
+.folder-header line,
+.folder-header polyline {
+    stroke: #000000 !important;
+    color: #000000 !important;
+}
+
+.folder-header * {
+    color: #000000 !important;
+}
+
+/* Right Side: Avatars + Arrow */
+.folder-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* Avatars Container */
+.folder-avatars {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+    height: 24px;
+}
+
+/* Sidebar Header Title */
+.sidebar-header-title {
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #6b7280;
+    padding: 0 4px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+/* Individual Avatar */
+.folder-avatar-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    background-color: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.folder-avatar-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Counter (+11) */
+.folder-avatar-circle.folder-counter {
+    background-color: #e5e7eb;
+    /* Gray bg */
+    color: #1f2937;
+    /* Dark text */
+    font-size: 9px;
+    font-weight: 700;
+    margin-left: -6px;
+    /* Overlap prev avatar */
+    z-index: 2;
+    border: 2px solid #ffffff;
+    /* Border to clear avatar behind */
+}
+
+/* Arrow Wrapper */
+.folder-arrow-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+/* Arrow Icon */
+.folder-arrow {
+    width: 14px;
+    height: 14px;
+    color: #9ca3af;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    opacity: 0.5;
+}
+
+.folder-group.open .folder-arrow {
+    transform: rotate(180deg);
+    opacity: 1;
+}
+
+/* Hide old elements */
+.folder-actions-btn {
+    display: none !important;
+}
+
+.folder-content {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    padding-left: 20px;
+    background-color: transparent;
+    border: none;
+    margin-top: 8px;
+}
+
+/* Open State */
+.folder-group.open .folder-content {
+    display: flex;
+}
+
+/* Fix for instances inside folders */
+.folder-content .instance-button {
+    width: 100%;
+}
+
 
 #add-instance-btn {
     width: 100%;
-    background-color: #2f3136;
-    color: #9ca3af;
-    border: 1px solid #373a40;
+    background-color: #ffffff;
+    color: #4b5563;
+    border: 1px solid #d1d5db;
     border-radius: 8px;
     padding: 10px;
     /* Compact padding */
@@ -363,9 +803,9 @@ html {
 }
 
 #add-instance-btn:hover {
-    background-color: #373a40;
-    color: #fff;
-    border-color: #4e535b;
+    background-color: #f3f4f6;
+    color: #111827;
+    border-color: #9ca3af;
 }
 
 #add-instance-btn svg {
@@ -380,8 +820,161 @@ html {
     position: relative;
     display: flex;
     flex-direction: column;
+    border-radius: 8px;
+    /* Keep rounding */
+    overflow: hidden;
+    margin: 0;
+    /* Remove margin */
+    border: none;
+    box-shadow: none;
 }
 
+/* Instance Container - cada instância tem seu próprio container */
+.instance-container {
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+}
+
+.instance-container.active {
+    display: flex;
+}
+
+/* Sub-tabs Navigation Bar (dentro de cada instância) */
+.sub-tabs-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f2f5;
+    border-bottom: 1px solid #dadce0;
+    padding: 0 8px;
+    gap: 2px;
+    min-height: 36px;
+    flex-shrink: 0;
+}
+
+.sub-tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px;
+    height: 28px;
+    background-color: transparent;
+    color: #5f6368;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    transition: all 0.2s;
+    position: relative;
+    max-width: 200px;
+    min-width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    user-select: none;
+    border: 1px solid transparent;
+}
+
+.sub-tab:hover {
+    background-color: #e8eaed;
+}
+
+.sub-tab.active {
+    background-color: #ffffff;
+    color: #202124;
+    border: 1px solid #dadce0;
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: -1px;
+}
+
+.sub-tab svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+.sub-tab span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+
+.sub-tab .close-sub-tab-btn {
+    margin-left: auto;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: #5f6368;
+    opacity: 0;
+    transition: opacity 0.2s, background 0.2s;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.sub-tab:hover .close-sub-tab-btn {
+    opacity: 1;
+}
+
+.close-sub-tab-btn:hover {
+    background-color: #dadce0;
+    color: #202124;
+}
+
+.close-sub-tab-btn svg {
+    width: 10px;
+    height: 10px;
+}
+
+.add-sub-tab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    color: #5f6368;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 4px;
+    transition: all 0.2s;
+}
+
+.add-sub-tab-btn:hover {
+    background-color: #e8eaed;
+}
+
+.add-sub-tab-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Sub-webviews container */
+.sub-webviews-container {
+    flex-grow: 1;
+    position: relative;
+    background-color: #ffffff;
+}
+
+.sub-webview {
+    width: 100%;
+    height: 100%;
+    display: none;
+    border: none;
+}
+
+.sub-webview.active {
+    display: flex;
+}
+
+/* Legacy support for old webview-content */
 .webview-content {
     flex-grow: 1;
     width: 100%;
@@ -402,10 +995,10 @@ html {
     right: 4px;
     width: 200px;
     /* Smaller width */
-    background-color: #2b2d31;
-    border: 1px solid #1e1f22;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     padding: 4px 0;
 }
@@ -416,13 +1009,13 @@ html {
 
 .dropdown-header {
     padding: 8px 12px;
-    border-bottom: 1px solid #3f4147;
+    border-bottom: 1px solid #e5e7eb;
     margin-bottom: 2px;
 }
 
 .user-email {
     font-size: 11px;
-    color: #949ba4;
+    color: #6b7280;
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -437,7 +1030,7 @@ html {
     gap: 8px;
     background: transparent;
     border: none;
-    color: #b5bac1;
+    color: #4b5563;
     font-size: 12px;
     cursor: pointer;
     text-align: left;
@@ -450,8 +1043,8 @@ html {
 }
 
 .dropdown-item:hover {
-    background-color: #35373c;
-    color: #fff;
+    background-color: #f3f4f6;
+    color: #111827;
 }
 
 .dropdown-footer {
@@ -482,4 +1075,430 @@ html {
 
 .delete-account-btn:hover {
     background-color: rgba(242, 63, 66, 0.1);
+}
+
+/* Duplicated Folder Styles Removed */
+
+/* Context Menu for Folder Actions */
+.folder-actions-btn {
+    opacity: 0;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 2px;
+    display: flex;
+}
+
+.folder-header:hover .folder-actions-btn {
+    opacity: 1;
+}
+
+.folder-actions-btn:hover {
+    color: #e5e7eb;
+}
+
+/* Sidebar Footer adjustments */
+.sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 8px;
+    margin-top: auto;
+}
+
+#add-folder-btn {
+    width: 100%;
+    background-color: transparent;
+    color: #9ca3af;
+    border: 1px dashed #373a40;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+#add-folder-btn:hover {
+    background-color: #2b2d31;
+    color: #fff;
+    border-color: #FF6398;
+    /* Matching purple */
+}
+
+/* --- Modal Dialog --- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 480px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.close-modal-btn {
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.close-modal-btn:hover {
+    background-color: #35373c;
+    color: #e5e7eb;
+}
+
+.modal-body {
+    padding: 24px;
+    /* Removed fixed max-height to allow content to dictate size */
+    /* max-height: 60vh; */
+    overflow-y: auto;
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+}
+
+.modal-body::-webkit-scrollbar {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #e5e7eb;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    color: #111827;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input[type="text"]:focus {
+    border-color: #6b7280;
+}
+
+/* --- Custom Select Dropdown --- */
+.custom-select-wrapper {
+    position: relative;
+    user-select: none;
+    width: 100%;
+}
+
+.custom-select-trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #e5e7eb;
+    background-color: #202124;
+    border: 1px solid #3f4147;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.custom-select-trigger:hover {
+    border-color: #555;
+}
+
+.custom-select-wrapper.open .custom-select-trigger {
+    border-color: #FF6398;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.custom-options {
+    /* Changed to relative to push content and expand modal */
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    border: 1px solid #3f4147;
+    border-top: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: #202124;
+    transition: all 0.2s;
+
+    /* Initially hidden and collapsed */
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 2;
+}
+
+.custom-select-wrapper.open .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    padding: 8px;
+    /* Expand to show content */
+    max-height: 200px;
+    overflow-y: auto;
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.custom-select-wrapper.open .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.instances-checklist {
+    /* Resetting previous border styles as it's now inside dropdown */
+    border: none;
+    background: transparent;
+    padding: 0;
+    max-height: none;
+}
+
+/* Rounded Checkboxes */
+.checkbox-item {
+    display: flex;
+    /* Ensure flexbox behavior */
+    align-items: center;
+    /* Vertically center */
+    flex-direction: row;
+    /* Force row direction */
+    gap: 12px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.checkbox-item:hover {
+    background-color: #2b2d31;
+}
+
+.checkbox-item input[type="checkbox"] {
+    /* Hide default checkbox */
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    /* Slightly larger for better hit area */
+    height: 20px;
+    border: 1px solid #9ca3af;
+    border-radius: 50%;
+    /* 100% Rounded */
+    margin: 0;
+    /* Remove default margins */
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    flex-shrink: 0;
+    /* Prevent shrinking */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox-item input[type="checkbox"]:checked {
+    background-color: #a855f7;
+    border-color: #a855f7;
+}
+
+.checkbox-item input[type="checkbox"]:checked::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+    /* Centering is handled by flex on parent input */
+}
+
+.checkbox-item label {
+    flex-grow: 1;
+    cursor: pointer;
+    font-size: 14px;
+    color: #e5e7eb;
+    margin: 0;
+    line-height: normal;
+    /* Fix vertical alignment */
+    white-space: nowrap;
+    /* Prevent wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 12px;
+    padding: 16px 24px;
+    border-top: 1px solid #3f4147;
+    justify-content: flex-end;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: #292524;
+    /* Warm Dark Gray */
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #1c1917;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #4b5563;
+    border: 1px solid #d1d5db;
+}
+
+.btn-secondary:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+/* --- Upgrade Overlay --- */
+.upgrade-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(20, 20, 25, 0.7);
+    backdrop-filter: blur(8px);
+    display: none;
+    /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.upgrade-overlay.visible {
+    display: flex;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.upgrade-dialog {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border: 1px solid #e5e7eb;
+    max-width: 400px;
+    width: 90%;
+}
+
+.upgrade-dialog h2 {
+    color: #e5e7eb;
+    font-size: 18px;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.upgrade-dialog p {
+    color: #9ca3af;
+    font-size: 14px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.upgrade-btn {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #ffffff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.upgrade-btn:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
 }

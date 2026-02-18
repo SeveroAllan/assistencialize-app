@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interativo - Assistencialize</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="quiz.css">
+</head>
+
+<body>
+    <div class="quiz-container">
+        <!-- Header Section -->
+        <header class="quiz-header">
+            <button class="back-btn" id="back-btn" title="Voltar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </button>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 50%;"></div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="quiz-content">
+            <div class="quiz-info-badge">
+                <span class="emoji">⏳</span> O questionário leva poucos minutos.
+            </div>
+
+            <h1 class="quiz-title">Vamos organizar seus atendimentos</h1>
+            <p class="quiz-subtitle">Escolha uma opção para continuar</p>
+
+            <!-- Option Cards -->
+            <div class="options-grid">
+                <!-- Option 1: Assistente Remota -->
+                <div class="option-card" data-value="assistente">
+                    <div class="card-header">
+                        <div class="action-icons">
+                            <button class="icon-btn" title="Editar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" title="Duplicar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" title="Excluir">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card-image">
+                        <!-- Placeholder for "Assistente remota" -->
+                        <img src="https://placehold.co/400x300/FF6398/white?text=Assistente+Remota"
+                            alt="Assistente Remota">
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="radio-select">
+                            <div class="radio-circle"></div>
+                            <span>Assistente remota</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Option 2: Secretária Executiva -->
+                <div class="option-card" data-value="secretaria">
+                    <div class="card-header">
+                        <!-- Only visual header for consistency -->
+                    </div>
+
+                    <div class="card-image">
+                        <!-- Placeholder for "Secretária executiva" -->
+                        <img src="https://placehold.co/400x300/FF6398/white?text=Secret%C3%A1ria+Executiva"
+                            alt="Secretária Executiva">
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="radio-select">
+                            <div class="radio-circle"></div>
+                            <span>Secretária executiva</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <button class="continue-btn" id="continue-btn" disabled>Continuar</button>
+        </main>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+
+</html>

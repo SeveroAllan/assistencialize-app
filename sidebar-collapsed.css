@@ -1,0 +1,173 @@
+/* Sidebar Header & Toggle */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    height: 24px;
+}
+
+.icon-btn-ghost {
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.icon-btn-ghost:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #4b5563;
+}
+
+/* Sidebar Collapsed State */
+.sidebar.collapsed {
+    width: 70px;
+    padding: 12px 6px;
+    transition: width 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-header {
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.sidebar.collapsed .sidebar-header-title {
+    display: none;
+}
+
+/* Instance List Collapsed */
+.sidebar.collapsed .instance-button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    justify-content: center;
+    padding: 6px 0;
+    width: 100%;
+    margin: 0;
+}
+
+.sidebar.collapsed .profile-name,
+.sidebar.collapsed .instance-whatsapp-icon,
+.sidebar.collapsed .instance-menu-btn,
+.sidebar.collapsed .profile-name-input {
+    display: none !important;
+}
+
+.sidebar.collapsed .avatar-placeholder {
+    margin: 0 auto !important;
+    width: 36px;
+    height: 36px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* Active State - Border around Avatar */
+.sidebar.collapsed .instance-button.active .avatar-placeholder {
+    border-color: #f97316;
+    /* Orange accent */
+    box-shadow: 0 0 0 2px #FEF8F5, 0 0 0 4px #f97316;
+}
+
+/* Hover Effect */
+.sidebar.collapsed .instance-button:hover .avatar-placeholder {
+    transform: scale(1.1);
+}
+
+.sidebar.collapsed .avatar-text {
+    font-size: 14px;
+    /* Larger font since avatar is bigger */
+}
+
+.sidebar.collapsed .notification-dot {
+    top: 0;
+    right: 0;
+    border: 2px solid #FEF8F5;
+    /* Match sticky background */
+    width: 10px;
+    height: 10px;
+}
+
+/* Footer Buttons Collapsed */
+.sidebar.collapsed .sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+/* Esconder botão de Nova Pasta */
+.sidebar.collapsed #add-folder-btn {
+    display: none !important;
+}
+
+/* Estilizar Botão Adicionar Perfil como + */
+.sidebar.collapsed #add-instance-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    margin: 0 auto;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    /* Circular */
+    font-size: 0;
+    /* Esconder texto */
+    background-color: transparent;
+    border: none;
+    box-sizing: border-box;
+    color: #9ca3af;
+}
+
+.sidebar.collapsed #add-instance-btn:hover {
+    background-color: transparent !important;
+    color: #111827;
+    /* Darker gray for hover feedback */
+    border: none;
+}
+
+.sidebar.collapsed #add-instance-btn svg {
+    margin: 0;
+    width: 24px;
+    height: 24px;
+}
+
+/* Ajuste nos grupos de pastas collapsados */
+.sidebar.collapsed .folder-group {
+    align-items: center;
+}
+
+.sidebar.collapsed .folder-header {
+    justify-content: center;
+    padding: 8px 0;
+    width: 100%;
+}
+
+.sidebar.collapsed .instances-list {
+    align-items: center;
+    /* Centralizar itens na lista */
+}
+
+/* Folders Collapsed */
+.sidebar.collapsed .folder-name,
+.sidebar.collapsed .folder-right,
+.sidebar.collapsed .folder-arrow-wrapper {
+    display: none !important;
+}
+
+.sidebar.collapsed .folder-avatar-circle {
+    display: none;
+    /* Hide multi-avatars in folder header */
+}
+
+/* Tooltip on hover (optional enhancement for collapsed state) */
+.sidebar.collapsed .instance-button:hover::after {
+    /* content: attr(title); ... requires JS to set title */
+}

@@ -4,26 +4,39 @@ const path = require('path');
 const { autoUpdater } = require('electron-updater');
 require('@electron/remote/main').initialize();
 
+const isMac = process.platform === 'darwin';
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({
+  // No Mac: titleBarStyle 'hiddenInset' mantém os traffic lights nativos
+  // e libera espaço para arrastar a janela. No Windows: frame: false.
+  const windowOptions = {
     width: 1200,
     height: 800,
-    frame: false, // Mantém a janela sem borda
+    minWidth: 900,
+    minHeight: 600,
+    icon: isMac
+      ? path.join(__dirname, 'icon.png')           // Mac usa .png ou .icns
+      : path.join(__dirname, 'logo-assistencialize-novo.ico'), // Windows usa .ico
+    frame: !isMac,          // Windows: sem frame. Mac: com frame nativo.
+    titleBarStyle: isMac ? 'hiddenInset' : undefined, // Mac: traffic lights nativos
+    trafficLightPosition: isMac ? { x: 14, y: 14 } : undefined,
     webPreferences: {
       webviewTag: true,
       nodeIntegration: true,
       contextIsolation: false,
-      backgroundThrottling: false // Prevent content from being throttled when window is hidden/minimized
+      backgroundThrottling: false
     }
-  });
+  };
+
+  mainWindow = new BrowserWindow(windowOptions);
 
   require('@electron/remote/main').enable(mainWindow.webContents);
   mainWindow.loadFile('index.html');
 
-  // Check for updates after window is ready
+  // Informa ao renderer qual plataforma está rodando
   mainWindow.webContents.on('did-finish-load', () => {
+    mainWindow.webContents.send('platform-info', { isMac });
     autoUpdater.checkForUpdatesAndNotify();
   });
 }
@@ -91,18 +104,64 @@ ipcMain.on('close-app', () => {
   BrowserWindow.getFocusedWindow().close();
 });
 
+// Menu nativo completo (padrão macOS)
 const menuTemplate = [
-  { label: 'Recarregar App', role: 'forceReload' },
-  { label: 'Ferramentas de Desenvolvedor', role: 'toggleDevTools' },
-  { type: 'separator' },
+  // Menu do App (só aparece no Mac, com nome do app)
+  ...(isMac ? [{
+    label: app.name,
+    submenu: [
+      { label: `Sobre o ${app.name}`, role: 'about' },
+      { type: 'separator' },
+      { label: 'Verificar Atualizações', click: () => { autoUpdater.checkForUpdatesAndNotify(); } },
+      { type: 'separator' },
+      { label: 'Serviços', role: 'services' },
+      { type: 'separator' },
+      { label: `Ocultar ${app.name}`, role: 'hide' },
+      { label: 'Ocultar Outros', role: 'hideOthers' },
+      { label: 'Mostrar Todos', role: 'unhide' },
+      { type: 'separator' },
+      { label: `Sair do ${app.name}`, role: 'quit' }
+    ]
+  }] : []),
+  {
+    label: 'Editar',
+    submenu: [
+      { label: 'Desfazer', role: 'undo' },
+      { label: 'Refazer', role: 'redo' },
+      { type: 'separator' },
+      { label: 'Recortar', role: 'cut' },
+      { label: 'Copiar', role: 'copy' },
+      { label: 'Colar', role: 'paste' },
+      { label: 'Selecionar Tudo', role: 'selectAll' }
+    ]
+  },
+  {
+    label: 'Visualizar',
+    submenu: [
+      { label: 'Recarregar', role: 'forceReload' },
+      { label: 'Ferramentas de Desenvolvedor', role: 'toggleDevTools' },
+      { type: 'separator' },
+      { label: 'Tela Cheia', role: 'togglefullscreen' }
+    ]
+  },
+  {
+    label: 'Janela',
+    role: 'windowMenu'
+  }
+];
+
+const appMenu = Menu.buildFromTemplate(menuTemplate);
+Menu.setApplicationMenu(appMenu);
+
+// Menu de contexto do botão de configurações
+const settingsMenu = Menu.buildFromTemplate([
   { label: 'Verificar Atualizações', click: () => { autoUpdater.checkForUpdatesAndNotify(); } },
   { type: 'separator' },
-  { label: 'Sair', role: 'quit' }
-];
-const menu = Menu.buildFromTemplate(menuTemplate);
+  { label: 'Ferramentas de Desenvolvedor', role: 'toggleDevTools' }
+]);
 
 ipcMain.on('show-settings-menu', (event) => {
-  menu.popup(BrowserWindow.fromWebContents(event.sender));
+  settingsMenu.popup(BrowserWindow.fromWebContents(event.sender));
 });
 
 app.whenReady().then(createWindow);

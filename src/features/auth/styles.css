@@ -1,18 +1,16 @@
 .login-overlay {
     position: fixed;
     top: 32px;
-    /* Below title bar */
     left: 0;
     width: 100vw;
     height: calc(100vh - 32px);
-    background-color: #0b0b0b;
-    /* Very dark background */
+    background-color: #FEF8F5;
+    /* Light Theme Background */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     font-family: 'Manrope', sans-serif;
-    /* Assuming Inter or similar sans-serif */
 }
 
 .login-overlay.hidden {
@@ -24,20 +22,22 @@
     max-width: 400px;
     padding: 40px;
     text-align: center;
-    color: #ffffff;
+    color: #1f2937;
+    /* Dark text */
 }
 
 .login-title {
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 8px;
-    color: #ffffff;
+    color: #111827;
+    /* Darker title */
 }
 
 .login-subtitle {
     font-size: 14px;
-    color: #a1a1aa;
-    /* Light gray text */
+    color: #6b7280;
+    /* Gray text */
     margin-bottom: 32px;
 }
 
@@ -55,32 +55,35 @@
 .input-group input {
     width: 100%;
     padding: 12px 16px;
-    background-color: #1e2023;
-    /* Dark input background */
-    border: 1px solid #2d2f33;
-    border-radius: 6px;
-    color: #ffffff;
+    background-color: #ffffff;
+    /* White input */
+    border: 1px solid #d1d5db;
+    /* Light border */
+    border-radius: 8px;
+    color: #1f2937;
     font-size: 14px;
     outline: none;
-    transition: border-color 0.2s;
+    transition: all 0.2s;
 }
 
 .input-group input:focus {
-    border-color: #3b82f6;
-    /* Blue focus border */
+    border-color: #9ca3af;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
 }
 
 .password-group {
-    display: flex;
-    align-items: center;
+    /* display: flex; align-items: center; (Removed if handled by wrapper logic, keep simple) */
+    position: relative;
 }
 
 .toggle-password {
     position: absolute;
     right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     border: none;
-    color: #a1a1aa;
+    color: #9ca3af;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -93,40 +96,40 @@
 }
 
 .forgot-password a {
-    color: #a1a1aa;
+    color: #6b7280;
     font-size: 12px;
     text-decoration: none;
 }
 
 .forgot-password a:hover {
-    color: #ffffff;
+    color: #111827;
     text-decoration: underline;
 }
 
 .LoginButton {
     width: 100%;
     padding: 12px;
-    background-color: #1e2532;
-    /* Initial dark blue-ish button background */
-    color: #ffffff;
+    background-color: #F9DCCD;
+    /* Theme Peach */
+    color: #000000;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: filter 0.2s;
 }
 
 .LoginButton:hover {
-    background-color: #2c3545;
+    filter: brightness(0.95);
 }
 
 .divider {
     display: flex;
     align-items: center;
     text-align: center;
-    margin: 16px 0;
-    color: #52525b;
+    margin: 24px 0;
+    color: #9ca3af;
     font-size: 12px;
 }
 
@@ -134,7 +137,7 @@
 .divider::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid #27272a;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .divider span {
@@ -174,4 +177,38 @@
     text-decoration: none;
     margin-left: 4px;
     border-bottom: 1px solid #ffffff;
+}
+
+/* Loading State */
+.LoginButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.LoginButton:disabled:hover {
+    background-color: #1e2532;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.LoginButton.loading::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
 }
