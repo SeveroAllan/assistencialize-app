@@ -151,7 +151,7 @@
 
         /* ── Steps Section ── */
         .steps-section {
-            max-width: 800px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 24px 80px;
         }
@@ -165,28 +165,58 @@
         }
 
         .steps-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+        }
+
+        /* Connector line between steps */
+        .steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: calc(12.5% + 8px);
+            right: calc(12.5% + 8px);
+            height: 2px;
+            background: var(--border);
+            z-index: 0;
         }
 
         .step-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 28px 32px;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0 16px 0;
             display: flex;
-            align-items: flex-start;
-            gap: 24px;
-            transition: box-shadow 0.2s;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0;
+            position: relative;
+            z-index: 1;
         }
 
         .step-card:hover {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            box-shadow: none;
         }
 
-        /* Highlight the security warning step */
-        .step-card.highlight {
+        .step-card-inner {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 24px 20px;
+            width: 100%;
+            margin-top: 20px;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .step-card:hover .step-card-inner {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .step-card.highlight .step-card-inner {
             border-color: #fbbf24;
             background: #fffbeb;
         }
@@ -194,25 +224,32 @@
         .step-number {
             width: 44px;
             height: 44px;
-            border-radius: 12px;
+            border-radius: 50%;
             background: var(--pink);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 800;
             color: var(--black);
             flex-shrink: 0;
+            border: 3px solid var(--light);
+            box-shadow: 0 0 0 2px var(--border);
         }
 
         .step-card.highlight .step-number {
-            background: #fef3c7;
+            background: #fbbf24;
+        }
+
+        .step-body {
+            width: 100%;
         }
 
         .step-body h3 {
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 700;
             margin-bottom: 6px;
+            margin-top: 0;
             color: var(--black);
         }
 
@@ -341,7 +378,7 @@
         }
 
         /* ── Responsive ── */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .hero h1 {
                 font-size: 28px;
             }
@@ -350,10 +387,30 @@
                 font-size: 16px;
             }
 
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .steps-grid::before {
+                display: none;
+            }
+
             .step-card {
-                flex-direction: column;
-                gap: 16px;
-                padding: 20px;
+                flex-direction: row;
+                align-items: flex-start;
+                text-align: left;
+                padding: 0;
+            }
+
+            .step-card-inner {
+                margin-top: 0;
+                margin-left: 16px;
+            }
+
+            .step-number {
+                margin-top: 0;
+                flex-shrink: 0;
             }
 
             .security-mockup {
@@ -400,55 +457,57 @@
             <!-- Step 1 -->
             <div class="step-card">
                 <div class="step-number">1</div>
-                <div class="step-body">
-                    <h3>Abra o arquivo baixado</h3>
-                    <p>Após o download terminar, abra o arquivo <strong
-                            id="filename-label">Assistencialize-Setup.exe</strong> que aparecerá no canto inferior do
-                        seu navegador ou na pasta <strong>Downloads</strong>.</p>
+                <div class="step-card-inner">
+                    <div class="step-body">
+                        <h3>Abra o arquivo baixado</h3>
+                        <p>Após o download terminar, abra o arquivo <strong
+                                id="filename-label">Assistencialize-Setup.exe</strong> na pasta
+                            <strong>Downloads</strong>.</p>
+                    </div>
                 </div>
             </div>
 
             <!-- Step 2 — Security Warning (highlighted) -->
             <div class="step-card highlight">
                 <div class="step-number">2</div>
-                <div class="step-body">
-                    <div class="warning-badge">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <path
-                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
-                            </path>
-                            <line x1="12" y1="9" x2="12" y2="13"></line>
-                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                        </svg>
-                        Atenção — Passo importante
-                    </div>
-                    <h3 id="security-title">Aceite o aviso de segurança do Windows</h3>
-                    <p id="security-desc">O Windows pode exibir um aviso <strong>"Windows protegeu seu
-                            computador"</strong>. Isso é normal para apps novos. Clique em <strong>"Mais
-                            informações"</strong> e depois em <strong>"Executar assim mesmo"</strong>.</p>
-
-                    <!-- Windows mockup -->
-                    <div class="security-mockup" id="windows-mockup">
-                        <div class="security-mockup-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280"
-                                stroke-width="2">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <div class="step-card-inner">
+                    <div class="step-body">
+                        <div class="warning-badge">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <path
+                                    d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                                </path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
                             </svg>
+                            Passo importante
                         </div>
-                        <div class="security-mockup-text">
-                            <div class="mock-title">Windows protegeu seu computador</div>
-                            <div class="mock-sub">Clique em "Mais informações" → "Executar assim mesmo"</div>
-                        </div>
-                        <div class="security-mockup-btn">Mais informações</div>
-                    </div>
+                        <h3 id="security-title">Aceite o aviso de segurança do Windows</h3>
+                        <p id="security-desc">O Windows pode exibir <strong>"Windows protegeu seu computador"</strong>.
+                            Clique em <strong>"Mais informações"</strong> e depois em <strong>"Executar assim
+                                mesmo"</strong>.</p>
 
-                    <!-- Mac mockup (hidden by default) -->
-                    <div class="mac-note" id="mac-note" style="display:none;">
-                        <strong>No Mac:</strong> O sistema pode exibir <em>"Assistencialize não pode ser aberto porque é
-                            de um desenvolvedor não identificado"</em>.<br><br>
-                        Para resolver: vá em <strong>Preferências do Sistema → Privacidade e Segurança</strong> e clique
-                        em <strong>"Abrir mesmo assim"</strong> ao lado do nome do app.
+                        <!-- Windows mockup -->
+                        <div class="security-mockup" id="windows-mockup">
+                            <div class="security-mockup-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280"
+                                    stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </div>
+                            <div class="security-mockup-text">
+                                <div class="mock-title">Windows protegeu seu computador</div>
+                                <div class="mock-sub">"Mais informações" → "Executar assim mesmo"</div>
+                            </div>
+                            <div class="security-mockup-btn">Mais informações</div>
+                        </div>
+
+                        <!-- Mac note (hidden by default) -->
+                        <div class="mac-note" id="mac-note" style="display:none;">
+                            <strong>No Mac:</strong> Vá em <strong>Preferências do Sistema → Privacidade e
+                                Segurança</strong> e clique em <strong>"Abrir mesmo assim"</strong>.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -456,20 +515,24 @@
             <!-- Step 3 -->
             <div class="step-card">
                 <div class="step-number">3</div>
-                <div class="step-body">
-                    <h3 id="step3-title">Conclua a instalação</h3>
-                    <p id="step3-desc">Siga as instruções do instalador. O processo leva menos de 1 minuto. O
-                        Assistencialize será instalado e abrirá automaticamente.</p>
+                <div class="step-card-inner">
+                    <div class="step-body">
+                        <h3 id="step3-title">Conclua a instalação</h3>
+                        <p id="step3-desc">Siga as instruções. O processo leva menos de 1 minuto. O Assistencialize
+                            abrirá automaticamente.</p>
+                    </div>
                 </div>
             </div>
 
             <!-- Step 4 -->
             <div class="step-card">
                 <div class="step-number">4</div>
-                <div class="step-body">
-                    <h3>Faça login e comece a usar</h3>
-                    <p>Crie sua conta ou faça login com o e-mail que você cadastrou. Adicione seus perfis de WhatsApp e
-                        comece a atender com muito mais organização! 🚀</p>
+                <div class="step-card-inner">
+                    <div class="step-body">
+                        <h3>Faça login e comece</h3>
+                        <p>Crie sua conta, adicione seus perfis de WhatsApp e comece a atender com muito mais
+                            organização! 🚀</p>
+                    </div>
                 </div>
             </div>
 
